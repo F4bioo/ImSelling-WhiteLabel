@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "883786623625",
+    "project_id": "white-label-i-m-selling",
+    "storage_bucket": "white-label-i-m-selling.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883786623625:android:472aa07835e20eb6e3b458",
+        "android_client_info": {
+          "package_name": "com.fappslab.imselling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883786623625-vvf6rm9nejav9tgjkgnc1up4je1dsufv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYnXcfWXarQMMrHQ90sKgwWad5kvtshwg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "883786623625-vvf6rm9nejav9tgjkgnc1up4je1dsufv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883786623625:android:ba98698845b7bd3ae3b458",
+        "android_client_info": {
+          "package_name": "com.fappslab.imselling.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883786623625-vvf6rm9nejav9tgjkgnc1up4je1dsufv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYnXcfWXarQMMrHQ90sKgwWad5kvtshwg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "883786623625-vvf6rm9nejav9tgjkgnc1up4je1dsufv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

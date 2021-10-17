@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/productsFragment"
-        android:name="com.fappslab.imselling.ui.fragment.ProductsFragment"
+        android:name="com.fappslab.imselling.ui.fragment.products.ProductsFragment"
         android:label="@string/products_screen_title"
         tools:layout="@layout/fragment_products">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <dialog
         android:id="@+id/addProductFragment"
-        android:name="com.fappslab.imselling.ui.fragment.AddProductFragment"
+        android:name="com.fappslab.imselling.ui.fragment.addproduct.AddProductFragment"
         android:label="@string/add_product_screen_title"
         tools:layout="@layout/fragment_add_product" />
 </navigation>

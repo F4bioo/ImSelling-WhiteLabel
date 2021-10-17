@@ -1,4 +1,4 @@
-package com.fappslab.imselling.ui.fragment
+package com.fappslab.imselling.ui.fragment.addproduct
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fappslab.imselling.R
+import com.fappslab.imselling.domain.model.Product
 import com.fappslab.imselling.domain.usecase.CreateProductUseCase
 import com.fappslab.imselling.utils.fromCurrency
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,6 +31,10 @@ class AddProductViewModel
     val inputPriceErrorResIdEvent: LiveData<Int?>
         get() = _inputPriceErrorResIdEvent
 
+    private val _createProductEvent = MutableLiveData<Product>()
+    val createProductEvent: LiveData<Product>
+        get() = _createProductEvent
+
     private var isFormValid = false
 
     fun createProduct(description: String, price: String, imageUri: Uri?) = viewModelScope.launch {
@@ -50,10 +55,10 @@ class AddProductViewModel
     }
 
     private fun getErrorDrawableResIdWhenNull(value: Uri?): Int {
-        return value?.let {
+        return if (value == null) {
             isFormValid = false
-            R.drawable.background_product_image
-        } ?: R.drawable.background_product_image_error
+            R.drawable.background_product_image_error
+        } else R.drawable.background_product_image
     }
 
     private fun getErrorStringResIdWhenEmpty(value: String): Int? {

@@ -6,7 +6,7 @@ import com.fappslab.imselling.domain.model.Product
 interface CreateProductUseCase {
 
     suspend operator fun invoke(
-        tile: String,
+        title: String,
         description: String,
         price: Double,
         imageUri: Uri

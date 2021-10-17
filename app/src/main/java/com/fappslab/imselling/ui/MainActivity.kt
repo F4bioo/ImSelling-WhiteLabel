@@ -1,11 +1,12 @@
-package com.fappslab.imselling
+package com.fappslab.imselling.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.fappslab.imselling.R
 import com.fappslab.imselling.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

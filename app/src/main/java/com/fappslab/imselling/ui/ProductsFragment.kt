@@ -1,8 +1,9 @@
-package com.fappslab.imselling
+package com.fappslab.imselling.ui
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.fappslab.imselling.R
 import com.fappslab.imselling.databinding.FragmentProductsBinding
 
 class ProductsFragment : Fragment(R.layout.fragment_products) {

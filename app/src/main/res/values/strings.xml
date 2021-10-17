@@ -10,4 +10,7 @@
     <string name="add_product_field_error">Mandatory field</string>
     <string name="add_product_button_add_product">Add</string>
 
+    <string name="products_error_access_denied">Access denied! Check the Firestore rules.</string>
+    <string name="products_error_access_unknown">Ops.. something went wrong.</string>
+
 </resources>

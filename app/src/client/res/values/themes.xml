@@ -26,4 +26,9 @@
         <item name="android:textColor">?attr/colorPrimary</item>
     </style>
 
+    <style name="Text.Error">
+        <item name="android:textColor">?attr/colorError</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
 </resources>

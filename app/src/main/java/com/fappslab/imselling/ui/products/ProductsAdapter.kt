@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import coil.transform.RoundedCornersTransformation
+import com.fappslab.imselling.R
 import com.fappslab.imselling.databinding.ItemProductBinding
 import com.fappslab.imselling.domain.model.Product
 import com.fappslab.imselling.utils.toCurrency
@@ -27,7 +29,10 @@ class ProductsAdapter : ListAdapter<Product, ProductsAdapter.ViewHolder>(DIFF_CA
         fun viewBinding(product: Product) {
             binding.run {
                 imageProduct.load(product.imageUrl) {
+                    placeholder(R.drawable.ic_placeholder)
                     crossfade(true)
+                    crossfade(500)
+                    transformations(RoundedCornersTransformation(16f))
                 }
                 textDescription.text = product.description
                 textPrice.text = product.price.toCurrency()

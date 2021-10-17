@@ -47,9 +47,10 @@ class AddProductViewModel
         if (isFormValid) {
             try {
                 val product = createProductUseCase(description, price.fromCurrency(), imageUri!!)
+                _createProductEvent.value = product
 
             } catch (e: Exception) {
-                println("<> CreateProduct: ${e.message}")
+                println("<> AddProductViewModel: ${e.message}")
             }
         }
     }

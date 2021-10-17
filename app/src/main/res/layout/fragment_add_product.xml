@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="32dp"
-    tools:context=".ui.products.ProductsFragment">
+    android:layout_height="wrap_content"
+    tools:context=".ui.addproduct.AddProductFragment">
 
     <View
         android:id="@+id/view_drag"
@@ -26,8 +25,6 @@
         android:layout_height="wrap_content"
         android:text="@string/add_product_button_add_product"
         android:textAllCaps="false"
-        android:translationX="16dp"
-        android:translationY="-16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,6 +46,7 @@
         android:id="@+id/input_layout_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
         android:layout_marginTop="32dp"
         android:hint="@string/add_product_field_description_hint"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,6 +67,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:paddingBottom="32dp"
         android:hint="@string/add_product_field_price_hint"
         app:layout_constraintEnd_toEndOf="@+id/input_layout_description"
         app:layout_constraintStart_toStartOf="@+id/input_layout_description"
@@ -78,9 +77,30 @@
             android:id="@+id/input_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapSentences"
+            android:inputType="numberDecimal"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <FrameLayout
+        android:id="@+id/progress_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#4D000000"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/progress_add"
+            style="?attr/indeterminateProgressStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.fappslab.imselling.R
 import com.fappslab.imselling.databinding.FragmentAddProductBinding
 import com.fappslab.imselling.utils.CurrencyTextWatcher
+import com.fappslab.imselling.utils.PRODUCT_KEY
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,15 +49,33 @@ class AddProductFragment : BottomSheetDialogFragment() {
 
     private fun initObserveEvents() {
         viewModel.imageUriErrorResIdEvent.observe(viewLifecycleOwner) { drawableResId ->
+            if (drawableResId == R.drawable.background_product_image_error) {
+                progressRules(false)
+            }
             binding.imageProduct.setBackgroundResource(drawableResId)
         }
 
         viewModel.inputDescriptionErrorResIdEvent.observe(viewLifecycleOwner) { stringResId ->
+            if (stringResId == R.string.add_product_field_error) {
+                progressRules(false)
+            }
+
             binding.inputLayoutDescription.setError(stringResId)
         }
 
         viewModel.inputPriceErrorResIdEvent.observe(viewLifecycleOwner) { stringResId ->
+            if (stringResId == R.string.add_product_field_error) {
+                progressRules(false)
+            }
+
             binding.inputLayoutPrice.setError(stringResId)
+        }
+
+        viewModel.createProductEvent.observe(viewLifecycleOwner) { product ->
+            findNavController().run {
+                previousBackStackEntry?.savedStateHandle?.set(PRODUCT_KEY, product)
+                popBackStack()
+            }
         }
     }
 
@@ -63,6 +85,8 @@ class AddProductFragment : BottomSheetDialogFragment() {
         }
 
         binding.buttonAdd.setOnClickListener {
+            progressRules(true)
+
             val description = binding.inputDescription.text.toString()
             val price = binding.inputPrice.text.toString()
 
@@ -82,5 +106,10 @@ class AddProductFragment : BottomSheetDialogFragment() {
         error = if (stringResId != null) {
             getString(stringResId)
         } else null
+    }
+
+    private fun progressRules(show: Boolean) {
+        binding.buttonAdd.isEnabled = !show
+        binding.progressContainer.isVisible = show
     }
 }

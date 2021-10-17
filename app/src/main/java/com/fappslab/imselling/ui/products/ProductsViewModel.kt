@@ -31,8 +31,9 @@ constructor(
         try {
             val products = getProductsUseCase()
             _getProductsEvent.value = products
-        } catch (e: Exception) {
 
+        } catch (e: Exception) {
+            println("<> ProductsViewModel: ${e.message}")
         }
     }
 }

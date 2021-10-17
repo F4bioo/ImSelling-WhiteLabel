@@ -10,7 +10,6 @@ class CreateProductUseCaseImpl(
     private val productRepository: ProductRepository
 ) : CreateProductUseCase {
     override suspend fun invoke(
-        title: String,
         description: String,
         price: Double,
         imageUri: Uri
@@ -19,7 +18,6 @@ class CreateProductUseCaseImpl(
             val imageUrl = productImageUploadUseCase(imageUri)
             val product = Product(
                 UUID.randomUUID().toString(),
-                title,
                 description,
                 price,
                 imageUrl

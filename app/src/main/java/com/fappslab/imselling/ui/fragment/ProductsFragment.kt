@@ -1,4 +1,4 @@
-package com.fappslab.imselling.ui
+package com.fappslab.imselling.ui.fragment
 
 import android.os.Bundle
 import android.view.View

@@ -1,4 +1,4 @@
-package com.fappslab.imselling.ui.fragment.addproduct
+package com.fappslab.imselling.ui.addproduct
 
 import android.net.Uri
 import android.os.Bundle

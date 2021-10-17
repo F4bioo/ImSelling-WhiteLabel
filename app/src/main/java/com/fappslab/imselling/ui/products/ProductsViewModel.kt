@@ -1,9 +1,10 @@
-package com.fappslab.imselling.ui.fragment.products
+package com.fappslab.imselling.ui.products
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.fappslab.imselling.config.Config
 import com.fappslab.imselling.domain.model.Product
 import com.fappslab.imselling.domain.usecase.GetProductsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,12 +15,17 @@ import javax.inject.Inject
 class ProductsViewModel
 @Inject
 constructor(
-    private val getProductsUseCase: GetProductsUseCase
+    private val getProductsUseCase: GetProductsUseCase,
+    config: Config
 ) : ViewModel() {
 
     private val _getProductsEvent = MutableLiveData<List<Product>>()
     val getProductsEvent: LiveData<List<Product>>
         get() = _getProductsEvent
+
+    private val _addButtonVisibilityEvent = MutableLiveData(config.addButtonVisibility)
+    val addButtonVisibilityEvent: LiveData<Boolean>
+        get() = _addButtonVisibilityEvent
 
     fun getProducts() = viewModelScope.launch {
         try {

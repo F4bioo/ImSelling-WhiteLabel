@@ -1,4 +1,4 @@
-package com.fappslab.imselling.ui.fragment.products
+package com.fappslab.imselling.ui.products
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

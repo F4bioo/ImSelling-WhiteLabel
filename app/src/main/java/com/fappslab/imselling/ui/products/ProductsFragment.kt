@@ -1,7 +1,8 @@
-package com.fappslab.imselling.ui.fragment.products
+package com.fappslab.imselling.ui.products
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.fappslab.imselling.R
@@ -40,6 +41,10 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
     private fun initObserveEvents() {
         viewModel.getProductsEvent.observe(viewLifecycleOwner) { products ->
             productsAdapter.submitList(products)
+        }
+
+        viewModel.addButtonVisibilityEvent.observe(viewLifecycleOwner) { isVisible ->
+            binding.fabAdd.isVisible = isVisible
         }
     }
 }

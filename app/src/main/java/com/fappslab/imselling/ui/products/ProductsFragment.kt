@@ -30,7 +30,7 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
         initListeners()
         initObserveEvents()
         initObserverNavBackStack()
-        viewModel.getProducts()
+        getProducts()
     }
 
     override fun onDestroyView() {
@@ -46,13 +46,20 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
     }
 
     private fun initListeners() {
-        binding.fabAdd.setOnClickListener {
-            findNavController().navigate(R.id.action_productsFragment_to_addProductFragment)
+        with(binding) {
+            swipeProducts.setOnRefreshListener {
+                getProducts()
+            }
+
+            fabAdd.setOnClickListener {
+                findNavController().navigate(R.id.action_productsFragment_to_addProductFragment)
+            }
         }
     }
 
     private fun initObserveEvents() {
         viewModel.getProductsEvent.observe(viewLifecycleOwner) { products ->
+            binding.swipeProducts.isRefreshing = false
             productsAdapter.submitList(products)
         }
 
@@ -86,5 +93,9 @@ class ProductsFragment : Fragment(R.layout.fragment_products) {
                 }
             })
         }
+    }
+
+    private fun getProducts() {
+        viewModel.getProducts()
     }
 }

@@ -41,6 +41,8 @@ android {
         selling {
             dimension 'product'
             manifestPlaceholders.appName = "I\'m selling"
+
+            buildConfigField 'String', 'FIREBASE_FLAVOR_COLLECTION', '\"selling\"'
         }
         client {
             dimension 'side'

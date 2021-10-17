@@ -2,8 +2,11 @@ package com.fappslab.imselling.domain.usecase
 
 import com.fappslab.imselling.data.ProductRepository
 import com.fappslab.imselling.domain.model.Product
+import javax.inject.Inject
 
-class GetProductsUseCaseImpl(
+class GetProductsUseCaseImpl
+@Inject
+constructor(
     private val productRepository: ProductRepository
 ) : GetProductsUseCase {
 

@@ -4,11 +4,15 @@ import android.net.Uri
 import com.fappslab.imselling.data.ProductRepository
 import com.fappslab.imselling.domain.model.Product
 import java.util.*
+import javax.inject.Inject
 
-class CreateProductUseCaseImpl(
+class CreateProductUseCaseImpl
+@Inject
+constructor(
     private val productImageUploadUseCase: ProductImageUploadUseCase,
     private val productRepository: ProductRepository
 ) : CreateProductUseCase {
+
     override suspend fun invoke(
         description: String,
         price: Double,

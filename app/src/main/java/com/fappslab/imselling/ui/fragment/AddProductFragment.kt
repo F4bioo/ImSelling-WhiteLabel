@@ -11,7 +11,9 @@ import com.fappslab.imselling.databinding.FragmentAddProductBinding
 import com.fappslab.imselling.utils.CurrencyTextWatcher
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddProductFragment : BottomSheetDialogFragment() {
 
     private var _binding: FragmentAddProductBinding? = null

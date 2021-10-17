@@ -2,8 +2,13 @@ package com.fappslab.imselling.data
 
 import android.net.Uri
 import com.fappslab.imselling.domain.model.Product
+import javax.inject.Inject
 
-class ProductRepository(private val dataSource: ProductDataSource) {
+class ProductRepository
+@Inject
+constructor(
+    private val dataSource: ProductDataSource
+) {
 
     suspend fun getProducts(): List<Product> =
         dataSource.getProducts()

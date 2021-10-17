@@ -8,9 +8,13 @@ import androidx.lifecycle.viewModelScope
 import com.fappslab.imselling.R
 import com.fappslab.imselling.domain.usecase.CreateProductUseCase
 import com.fappslab.imselling.utils.fromCurrency
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class AddProductViewModel(
+@HiltViewModel
+class AddProductViewModel
+@Inject constructor(
     private val createProductUseCase: CreateProductUseCase
 ) : ViewModel() {
 

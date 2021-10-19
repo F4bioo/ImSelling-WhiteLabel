@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.addproduct.AddProductFragment">
+    tools:context=".ui.saveproduct.SaveProductFragment">
 
     <View
         android:id="@+id/view_drag"
@@ -19,36 +19,51 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_add"
+        android:id="@+id/button_save"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add_product_button_add_product"
+        android:layout_marginTop="8dp"
+        android:text="@string/save_product_button_save_product"
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/image_add"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/desc_product_image"
+        android:padding="32dp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_product"
+        app:layout_constraintEnd_toEndOf="@+id/image_product"
+        app:layout_constraintStart_toStartOf="@+id/image_product"
+        app:layout_constraintTop_toTopOf="@+id/image_product"
+        app:srcCompat="@drawable/ic_add_photo" />
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_product"
         android:layout_width="148dp"
         android:layout_height="148dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/background_product_image"
-        android:padding="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/view_drag"
         app:layout_constraintStart_toStartOf="@+id/view_drag"
         app:layout_constraintTop_toBottomOf="@+id/view_drag"
-        app:srcCompat="@drawable/ic_add_photo"
-        tools:src="@tools:sample/avatars" />
+        app:shapeAppearance="@style/ImageRoundedCornerStyle"
+        tools:src="@tools:sample/backgrounds/scenic" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/input_layout_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
+        android:hint="@string/save_product_field_description_hint"
         android:layout_marginTop="32dp"
-        android:hint="@string/add_product_field_description_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_product">
@@ -67,8 +82,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:hint="@string/save_product_field_price_hint"
         android:paddingBottom="32dp"
-        android:hint="@string/add_product_field_price_hint"
         app:layout_constraintEnd_toEndOf="@+id/input_layout_description"
         app:layout_constraintStart_toStartOf="@+id/input_layout_description"
         app:layout_constraintTop_toBottomOf="@+id/input_layout_description">
@@ -95,7 +110,6 @@
         tools:visibility="visible">
 
         <ProgressBar
-            android:id="@+id/progress_add"
             style="?attr/indeterminateProgressStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

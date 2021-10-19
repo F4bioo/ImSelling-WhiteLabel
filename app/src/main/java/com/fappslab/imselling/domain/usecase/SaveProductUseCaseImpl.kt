@@ -6,27 +6,32 @@ import com.fappslab.imselling.domain.model.Product
 import java.util.*
 import javax.inject.Inject
 
-class CreateProductUseCaseImpl
+class SaveProductUseCaseImpl
 @Inject
 constructor(
     private val productImageUploadUseCase: ProductImageUploadUseCase,
     private val productRepository: ProductRepository
-) : CreateProductUseCase {
+) : SaveProductUseCase {
 
     override suspend fun invoke(
+        productId: String?,
         description: String,
         price: Double,
         imageUri: Uri
     ): Product {
+        val id = productId ?: UUID.randomUUID().toString()
         return try {
-            val imageUrl = productImageUploadUseCase(imageUri)
+            val imageUrl = when {
+                imageUri.toString().contains("https://") -> imageUri.toString()
+                else -> productImageUploadUseCase(id, imageUri)
+            }
             val product = Product(
-                UUID.randomUUID().toString(),
-                description,
-                price,
-                imageUrl
+                id = id,
+                description = description,
+                price = price,
+                imageUrl = imageUrl
             )
-            productRepository.createProducts(product)
+            productRepository.saveProduct(product)
         } catch (e: Exception) {
             throw e
         }

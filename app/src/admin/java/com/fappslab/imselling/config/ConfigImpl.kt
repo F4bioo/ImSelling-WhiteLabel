@@ -4,7 +4,8 @@ import javax.inject.Inject
 
 class ConfigImpl
 @Inject
-constructor() : Config {
+constructor(
+) : Config {
 
-    override val addButtonVisibility: Boolean = true
+    override val isAdmin: Boolean = true
 }

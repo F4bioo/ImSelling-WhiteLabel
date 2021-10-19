@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.fappslab.imselling.R
 import com.fappslab.imselling.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -16,8 +17,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    @Inject
+    lateinit var appFragmentFactory: AppFragmentFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportFragmentManager.fragmentFactory = appFragmentFactory
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

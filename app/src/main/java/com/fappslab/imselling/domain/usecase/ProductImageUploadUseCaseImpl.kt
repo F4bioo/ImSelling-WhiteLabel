@@ -10,7 +10,7 @@ constructor(
     private val productRepository: ProductRepository
 ) : ProductImageUploadUseCase {
 
-    override suspend fun invoke(imageUri: Uri): String {
-        return productRepository.uploadProductImage(imageUri)
+    override suspend fun invoke(id: String, imageUri: Uri): String {
+        return productRepository.uploadProductImage(id, imageUri)
     }
 }

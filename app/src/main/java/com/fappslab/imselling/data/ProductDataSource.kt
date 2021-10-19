@@ -7,7 +7,11 @@ interface ProductDataSource {
 
     suspend fun getProducts(): List<Product>
 
-    suspend fun uploadProductImage(imageUri: Uri): String
+    suspend fun uploadProductImage(id: String, imageUri: Uri): String
 
-    suspend fun createProducts(product: Product): Product
+    suspend fun saveProduct(product: Product): Product
+
+    suspend fun deleteProductImage(id: String): String
+
+    suspend fun deleteProduct(product: Product): Product
 }

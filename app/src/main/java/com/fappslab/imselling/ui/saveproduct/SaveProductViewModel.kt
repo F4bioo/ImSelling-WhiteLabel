@@ -1,4 +1,4 @@
-package com.fappslab.imselling.ui.addproduct
+package com.fappslab.imselling.ui.saveproduct
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
@@ -7,16 +7,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fappslab.imselling.R
 import com.fappslab.imselling.domain.model.Product
-import com.fappslab.imselling.domain.usecase.CreateProductUseCase
+import com.fappslab.imselling.domain.usecase.SaveProductUseCase
 import com.fappslab.imselling.utils.fromCurrency
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddProductViewModel
+class SaveProductViewModel
 @Inject constructor(
-    private val createProductUseCase: CreateProductUseCase
+    private val saveProductUseCase: SaveProductUseCase
 ) : ViewModel() {
 
     private val _imageUriErrorResIdEvent = MutableLiveData<Int>()
@@ -31,28 +31,30 @@ class AddProductViewModel
     val inputPriceErrorResIdEvent: LiveData<Int?>
         get() = _inputPriceErrorResIdEvent
 
-    private val _createProductEvent = MutableLiveData<Product>()
-    val createProductEvent: LiveData<Product>
-        get() = _createProductEvent
+    private val _saveProductEvent = MutableLiveData<Product>()
+    val saveProductEvent: LiveData<Product>
+        get() = _saveProductEvent
 
     private var isFormValid = false
 
-    fun createProduct(description: String, price: String, imageUri: Uri?) = viewModelScope.launch {
-        isFormValid = true
+    fun saveProduct(productId: String?, description: String, price: String, imageUri: Uri?) =
+        viewModelScope.launch {
+            isFormValid = true
 
-        _imageUriErrorResIdEvent.value = getErrorDrawableResIdWhenNull(imageUri)
-        _inputDescriptionErrorResIdEvent.value = getErrorStringResIdWhenEmpty(description)
-        _inputPriceErrorResIdEvent.value = getErrorStringResIdWhenEmpty(price)
+            _imageUriErrorResIdEvent.value = getErrorDrawableResIdWhenNull(imageUri)
+            _inputDescriptionErrorResIdEvent.value = getErrorStringResIdWhenEmpty(description)
+            _inputPriceErrorResIdEvent.value = getErrorStringResIdWhenEmpty(price)
 
-        if (isFormValid) {
-            try {
-                val product = createProductUseCase(description, price.fromCurrency(), imageUri!!)
-                _createProductEvent.value = product
+            if (isFormValid) {
+                try {
+                    val product =
+                        saveProductUseCase(productId, description, price.fromCurrency(), imageUri!!)
+                    _saveProductEvent.value = product
 
-            } catch (e: Exception) {
-                println("<> AddProductViewModel: ${e.message}")
+                } catch (e: Exception) {
+                    println("<> saveProduct: ${e.message}")
+                }
             }
-        }
     }
 
     private fun getErrorDrawableResIdWhenNull(value: Uri?): Int {
@@ -65,7 +67,7 @@ class AddProductViewModel
     private fun getErrorStringResIdWhenEmpty(value: String): Int? {
         return if (value.trim().isEmpty()) {
             isFormValid = false
-            R.string.add_product_field_error
+            R.string.save_product_field_error
         } else null
     }
 }

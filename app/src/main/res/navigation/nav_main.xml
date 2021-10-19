@@ -11,12 +11,17 @@
         android:label="@string/products_screen_title"
         tools:layout="@layout/fragment_products">
         <action
-            android:id="@+id/action_productsFragment_to_addProductFragment"
-            app:destination="@id/addProductFragment" />
+            android:id="@+id/action_productsFragment_to_saveProductFragment"
+            app:destination="@id/saveProductFragment" />
     </fragment>
     <dialog
-        android:id="@+id/addProductFragment"
-        android:name="com.fappslab.imselling.ui.addproduct.AddProductFragment"
-        android:label="@string/add_product_screen_title"
-        tools:layout="@layout/fragment_add_product" />
+        android:id="@+id/saveProductFragment"
+        android:name="com.fappslab.imselling.ui.saveproduct.SaveProductFragment"
+        android:label="@string/save_product_screen_title"
+        tools:layout="@layout/fragment_save_product">
+        <argument
+            android:name="saveArgs"
+            app:argType="com.fappslab.imselling.domain.model.Product"
+            app:nullable="true" />
+    </dialog>
 </navigation>

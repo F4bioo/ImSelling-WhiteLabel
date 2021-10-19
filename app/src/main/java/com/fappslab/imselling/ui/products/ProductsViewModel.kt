@@ -9,6 +9,7 @@ import com.fappslab.imselling.config.Config
 import com.fappslab.imselling.domain.model.Product
 import com.fappslab.imselling.domain.type.ErrorType
 import com.fappslab.imselling.domain.type.ResultType
+import com.fappslab.imselling.domain.usecase.DeleteProductUseCase
 import com.fappslab.imselling.domain.usecase.GetProductsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,6 +20,7 @@ class ProductsViewModel
 @Inject
 constructor(
     private val getProductsUseCase: GetProductsUseCase,
+    private val deleteProductUseCase: DeleteProductUseCase,
     config: Config
 ) : ViewModel() {
 
@@ -26,9 +28,13 @@ constructor(
     val viewStateEvent: LiveData<ViewState>
         get() = _viewStateEvent
 
-    private val _addButtonVisibilityEvent = MutableLiveData(config.addButtonVisibility)
+    private val _addButtonVisibilityEvent = MutableLiveData(config.isAdmin)
     val addButtonVisibilityEvent: LiveData<Boolean>
         get() = _addButtonVisibilityEvent
+
+    private val _deleteProductEvent = MutableLiveData<Product>()
+    val deleteProductEvent: LiveData<Product>
+        get() = _deleteProductEvent
 
     fun getProducts() = viewModelScope.launch {
         _viewStateEvent.value = when (val result = getProductsUseCase()) {
@@ -41,6 +47,16 @@ constructor(
                     }
                 )
             }
+        }
+    }
+
+    fun deleteProduct(product: Product) = viewModelScope.launch {
+        try {
+            deleteProductUseCase(product).let { product ->
+                _deleteProductEvent.value = product
+            }
+        } catch (e: Exception) {
+            println("<> deleteProduct: ${e.message}")
         }
     }
 

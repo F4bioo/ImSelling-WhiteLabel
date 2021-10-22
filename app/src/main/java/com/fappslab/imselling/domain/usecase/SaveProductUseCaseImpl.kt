@@ -21,10 +21,7 @@ constructor(
     ): Product {
         val id = productId ?: UUID.randomUUID().toString()
         return try {
-            val imageUrl = when {
-                imageUri.toString().contains("https://") -> imageUri.toString()
-                else -> productImageUploadUseCase(id, imageUri)
-            }
+            val imageUrl = productImageUploadUseCase(id, imageUri)
             val product = Product(
                 id = id,
                 description = description,

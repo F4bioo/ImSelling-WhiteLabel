@@ -11,6 +11,9 @@ constructor(
 ) : ProductImageUploadUseCase {
 
     override suspend fun invoke(id: String, imageUri: Uri): String {
-        return productRepository.uploadProductImage(id, imageUri)
+        return when {
+            imageUri.toString().contains("https://") -> imageUri.toString()
+            else -> productRepository.uploadProductImage(id, imageUri)
+        }
     }
 }

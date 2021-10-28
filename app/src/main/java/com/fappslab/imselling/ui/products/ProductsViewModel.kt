@@ -36,6 +36,10 @@ constructor(
     val deleteProductEvent: LiveData<Product>
         get() = _deleteProductEvent
 
+    init {
+        getProducts()
+    }
+
     fun getProducts() = viewModelScope.launch {
         _viewStateEvent.value = when (val result = getProductsUseCase()) {
             is ResultType.Success -> ViewState.ShowProducts(result.data)

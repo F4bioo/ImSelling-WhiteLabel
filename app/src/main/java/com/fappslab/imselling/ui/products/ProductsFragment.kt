@@ -37,7 +37,6 @@ class ProductsFragment
         initListeners()
         initObserveEvents()
         initObserverNavBackStack()
-        getProducts()
     }
 
     override fun onDestroyView() {
